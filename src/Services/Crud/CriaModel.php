@@ -10,6 +10,8 @@ class CriaModel
 {
 
     protected $template = __DIR__.'/CreateCrud/model.txt';
+    protected $base_model = __DIR__.'/CreateCrud/base_model.txt';
+    protected $base_uuid = __DIR__.'/CreateCrud/traid_uuid.txt';
     protected $tabela;
     protected $dbschema;
     /**
@@ -31,6 +33,21 @@ class CriaModel
 
         if (!File::isDirectory(base_path('app/Models'))) {
             File::makeDirectory(base_path('app/Models'));
+        }
+        if (!File::isDirectory(base_path('app/Traits'))) {
+            File::makeDirectory(base_path('app/Traits'));
+        }
+
+        if (!File::isFile(base_path('app/Models/BaseModels.php'))) {
+            $base_model = File::get($this->base_model);
+            $base_model = str_replace('[{namespace}]', $this->getAppNamespace(), $base_model);
+            File::put(base_path('app/Models/BaseModels.php'), $base_model);
+        }
+
+        if (!File::isFile(base_path('app/Models/Traits/Uuid.php'))) {
+            $traid = File::get($this->base_uuid);
+            $traid = str_replace('[{namespace}]', $this->getAppNamespace(), $traid);
+            File::put(base_path('app/Models/BaseModels.php'), $traid);
         }
 
         $model = File::get($this->template);

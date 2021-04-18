@@ -2,6 +2,7 @@
 
 namespace [{namespace}]Providers;
 
+use Illuminate\Support\ServiceProvider;
  //[uses]
 
 class RepositoryServiceProvider extends ServiceProvider
