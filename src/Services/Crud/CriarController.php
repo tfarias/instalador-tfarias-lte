@@ -98,8 +98,7 @@ class CriarController
             File::put(base_path('database/seeds/data/permissoes.json'), json_encode($rotas, JSON_UNESCAPED_UNICODE));
         }
 
-        Artisan::call('db:seed --class=TipoRotaSeeder');
-        Artisan::call('db:seed --class=RotaSeeder');
+    
     }
 
 }
