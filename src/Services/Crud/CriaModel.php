@@ -34,8 +34,8 @@ class CriaModel
         if (!File::isDirectory(base_path('app/Models'))) {
             File::makeDirectory(base_path('app/Models'));
         }
-        if (!File::isDirectory(base_path('app/Traits'))) {
-            File::makeDirectory(base_path('app/Traits'));
+        if (!File::isDirectory(base_path('app/Models/Traits'))) {
+            File::makeDirectory(base_path('app/Models/Traits'));
         }
 
         if (!File::isFile(base_path('app/Models/BaseModels.php'))) {
