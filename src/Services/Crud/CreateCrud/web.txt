@@ -1,10 +1,2 @@
-    Route::group(['prefix' => '[{prefix}]', 'as' => '[{route_as}].'], function ()
-    {
-        Route::get('/', ['uses' => "[{classe}]Controller@index", 'as' => 'index']);
-        Route::get('create', ['uses' => "[{classe}]Controller@create", 'as' => 'create']);
-        Route::post('create', ['uses' => "[{classe}]Controller@store", 'as' => 'create.post']);
-        Route::get('{[{prefix}]}/edit', ['uses' => "[{classe}]Controller@edit", 'as' => 'edit']);
-        Route::put('{[{prefix}]}/edit', ['uses' => "[{classe}]Controller@update", 'as' => 'edit.post']);
-        Route::delete('destroy/{[{prefix}]}', ['uses' => "[{classe}]Controller@destroy", 'as' => 'destroy']);
-    });
+    Route::resource('[{prefix}]', '[{classe}]Controller');
    

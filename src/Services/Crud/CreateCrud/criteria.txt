@@ -1,5 +1,5 @@
 <?php
-namespace [{namespace}]\Criteria;
+namespace [{namespace}]Criteria;
 
 use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
@@ -7,7 +7,7 @@ use Prettus\Repository\Contracts\RepositoryInterface;
 /**
  * Class [{tabela_model}]Criteria.
  *
- * @package namespace [{namespace}]\Criteria;
+ * @package namespace [{namespace}]Criteria;
  */
 class [{tabela_model}]Criteria implements CriteriaInterface
 {
