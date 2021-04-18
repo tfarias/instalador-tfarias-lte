@@ -39,7 +39,8 @@ class CriaRepository
         $repository = str_replace('[{namespace}]', $this->namespace, $repository);
 
         if (!File::isFile(base_path($this->repositoryProvider))) {
-            File::put(base_path('app/Providers/RepositoryServiceProvider.php'), $this->repository_model);
+            $repository_model = File::get($this->repository_model);
+            File::put(base_path('app/Providers/RepositoryServiceProvider.php'), $repository_model);
         }
         
         File::put(base_path('app/Repositories/' . $classe . 'Repository.php'), $repository);

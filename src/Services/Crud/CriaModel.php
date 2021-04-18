@@ -29,6 +29,10 @@ class CriaModel
         // Nome da classe em CamelCase
         $classe = ucfirst(Str::camel($tabela));
 
+        if (!File::isDirectory(base_path('app/Models'))) {
+            File::makeDirectory(base_path('app/Models'));
+        }
+
         $model = File::get($this->template);
         $model = str_replace('[{tabela}]', $tabela, $model);
         $model = str_replace('[{tabela_model}]', $classe, $model);
