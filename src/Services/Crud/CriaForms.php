@@ -23,6 +23,9 @@ class CriaForms
     public function criar($tabela)
     {
 
+        if (!File::isDirectory(base_path('app/Forms'))) {
+            File::makeDirectory(base_path('app/Forms'));
+        }
         //TODO alterar o crud mapear bancos de dados
         //$banco = env('DB_CONNECTION', 'mysql');
         $schema = new Schema($tabela);
