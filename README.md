@@ -1,7 +1,4 @@
-## Instalador de codigos laravel Baseado no template Metronic
-
-Ele funciona baseado no modelo de permissões
-caso queira aplicar basta ter mi middware de permissoes que utiliza table de rota
+## Instalador de codigos laravel Baseado no template Admin-Lte
 
 ## Método de utilização
 
@@ -9,33 +6,56 @@ caso queira aplicar basta ter mi middware de permissoes que utiliza table de rot
 
   adicionar no config/app.php
 
-Tfarias\InstaladorTfarias\TfariasInstaladorServiceProvider::class,
+Tfarias\InstaladorTfariasLte\TfariasInstaladorLteServiceProvider::class,
+
+```bash
+# Após isso rodar o comando
+$ php artisan vendor:publish
+e escolher o repositorio
+
+# app/Providers/RepositoryServiceProvider.php
+caso ja tenha esse arquivo, deve-se ser adicionado essas chaves
+
+#   //[uses]
+abaixo dos uses
+
+dentro da funcao register
+#   //[repository]
+
+ficando semelhante a isso
+
+namespace [{namespace}]\Providers;
+
+ //[uses]
+
+class RepositoryServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        //
+    }
+
+    public function register()
+    {
+        //[repository]
+    }
+}
+
+  caso não tenha esse arquivo ele será criado após rodar a primeira vez o
+
+  $ php artisan create-lte
+
+  porém você deverá adiciona-lo no config/app.php
+
+  adicionar no config/app.php
+
+# app/Providers/RepositoryServiceProvider.php,
+
+```
 
 ## \*atenção
 
 para executar os comando primeiro você deve fazer e rodar suas migrations
 após isso:
 
-$ php artisan create-crud
-
-e também deve ter essas chaves nos determinados arquivos
-
-```bash
-# routes/web.php
-deve adicionar essa chave onde deseja que as rotas sejam criadas
-# //[rota]
-
-# resouces/views/partials/menu.blade.php
-  deve adicionar essa chave onde deseja que os menus sejam criados
-# {{--menu--}}
-
-# app/Providers/RepositoryServiceProvider.php
-
-deve aicionar essa chave abaido dos uses
-#  //[uses]
-
-e esta dentro da função register
-
-# //[repository]
-
-```
+$ php artisan create-lte

@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\DB;
 class CreateCrud extends Command
 {
 
-    protected $signature = 'create-crud-lte';
+    protected $signature = 'create-lte';
 
-    protected $description = 'Cria um crud default com repository. por Tiago F. S.';
+    protected $description = 'Cria um crud completo baseado no admin-lte. por Tiago F. S.';
 
     /**
      * @var CriaViews
