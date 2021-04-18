@@ -1,0 +1,9 @@
+[
+  {
+    "tipo": "Dashboard",
+    "desenv": "N",
+    "acesso_liberado": "S",
+    "slug": "home",
+    "descricao": "Visualizar dashboard"
+  }
+]

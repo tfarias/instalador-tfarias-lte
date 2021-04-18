@@ -31,6 +31,7 @@ class CriaRepository
         if (!File::isDirectory(base_path('app/Repositories'))) {
             File::makeDirectory(base_path('app/Repositories'));
         }
+        
         $schema = new Schema($tabela);
 
         $this->tabela = $tabela;

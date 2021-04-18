@@ -15,7 +15,8 @@ class TfariasInstaladorLteServiceProvider extends ServiceProvider
             __DIR__ . '/publishes/partials/assets/lte' => base_path('resources/views/partials/assets/lte'),
             __DIR__ . '/publishes/partials/lte' => base_path('resources/views/partials/lte'),
             __DIR__ . '/publishes/dist' => base_path('public/lte/dist'),
-            __DIR__ . '/publishes/plugins' => base_path('public/lte/plugins')
+            __DIR__ . '/publishes/plugins' => base_path('public/lte/plugins'),
+            __DIR__ . '/publishes/permissoes.json' => base_path('database/seeds/data'),
         ]);
 
     }

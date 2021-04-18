@@ -85,6 +85,7 @@ class CriarController
 
     public function atualizarJsonRotas($titulo, $routeAs, $titulo_rota)
     {
+
         if (!Route::has($routeAs . '.index')) {
             $json = \Illuminate\Support\Facades\File::get(base_path('database/seeds/data/permissoes.json'));
             $rotas = json_decode($json, true);
