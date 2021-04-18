@@ -47,7 +47,7 @@ class CriaModel
         if (!File::isFile(base_path('app/Models/Traits/Uuid.php'))) {
             $traid = File::get($this->base_uuid);
             $traid = str_replace('[{namespace}]', $this->getAppNamespace(), $traid);
-            File::put(base_path('app/Models/BaseModels.php'), $traid);
+            File::put(base_path('app/Models/Traits/Uuid.php'), $traid);
         }
 
         $model = File::get($this->template);
