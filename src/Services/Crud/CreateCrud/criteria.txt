@@ -34,7 +34,7 @@ class [{tabela_model}]Criteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-       $filtro->orderBy('id','DESC');
+       $filtro = $model->orderBy('id','DESC');
 
         [{filtros_if}]
 
