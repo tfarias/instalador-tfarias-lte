@@ -1,0 +1,5 @@
+@extends('layouts.imprimir')
+
+@section('conteudo')
+    @include('[{route_as}].listagem', ['imprimir' => true])
+@endsection

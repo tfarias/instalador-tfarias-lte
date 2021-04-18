@@ -1,0 +1,31 @@
+{
+    "name": "tfarias/instalador-tfarias-lte",
+    "description": "Instalador de codigos baseado no template admin-lte",
+    "require": {
+        "kris/laravel-form-builder": "^1",
+        "laracasts/flash": "^3",
+        "laravel/framework": "^5",
+        "patricktalmadge/bootstrapper": "^5",
+        "prettus/l5-repository": "^2"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tfarias\\InstaladorTfariasLte\\TfariasInstaladorLteServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Tfarias\\InstaladorTfariasLte\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tiago de F S",
+            "email": "tfariasg3@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}

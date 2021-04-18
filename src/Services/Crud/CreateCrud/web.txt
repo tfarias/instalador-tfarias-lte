@@ -1,0 +1,5 @@
+    Route::group(['prefix' => '[{prefix}]', 'as' => '[{route_as}].'], function ()
+    {
+        rotasCrud('[{classe}]Controller','[{prefix}]');
+    });
+    //[rota]

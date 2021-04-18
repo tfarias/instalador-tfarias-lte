@@ -1,0 +1,1 @@
+Button::danger(Icon::create('remove'))->asLinkTo(route($route,$param))->addAttributes(['class'=>'btn-xs confirma-acao pull-right','data-texto'=>'Deseja mesmo excluir este registro?','id'=>'btn-excluir','toggle'=>'tooltip','title'=>'Deletar']);

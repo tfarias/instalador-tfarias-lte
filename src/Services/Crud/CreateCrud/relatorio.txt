@@ -1,0 +1,34 @@
+<?php
+
+namespace [{namespace}]Relatorios;
+
+use [{namespace}]Models\[{tabela_model}];
+
+class [{tabela_model}]Listagem extends RelatorioBase
+{
+
+
+    /**
+     * Gera os dados.
+     *
+     * @param array $filtros
+     * @param bool $paginar
+     *
+     * @return mixed
+     */
+    public function gerar($filtros, $paginar = true, $repository)
+    {
+        $dados = [{tabela_model}]::orderBy('id', 'ASC');
+
+        $dados = $repository->scop
+
+        paginate();
+        [{filtros_if}]
+
+        if ($paginar) {
+            return $dados->paginate($this->porPagina);
+        }
+
+        return $dados->get();
+    }
+}

@@ -1,0 +1,43 @@
+<?php
+namespace [{namespace}]\Criteria;
+
+use Prettus\Repository\Contracts\CriteriaInterface;
+use Prettus\Repository\Contracts\RepositoryInterface;
+
+/**
+ * Class [{tabela_model}]Criteria.
+ *
+ * @package namespace [{namespace}]\Criteria;
+ */
+class [{tabela_model}]Criteria implements CriteriaInterface
+{
+    /**
+     * @var Request
+     */
+    private $parans;
+
+    /**
+     * [{tabela_model}]Criteria constructor.
+     */
+    public function __construct($parans)
+    {
+        $this->parans = $parans;
+    }
+
+    /**
+     * Apply criteria in query repository
+     *
+     * @param string              $model
+     * @param RepositoryInterface $repository
+     *
+     * @return mixed
+     */
+    public function apply($model, RepositoryInterface $repository)
+    {
+       $filtro->orderBy('id','DESC');
+
+        [{filtros_if}]
+
+        return $filtro;
+    }
+}

@@ -1,0 +1,188 @@
+<?php
+
+namespace [{namespace}]Http\Controllers;
+
+use [{namespace}]Models\[{tabela_model}];
+use [{namespace}]Repositories\[{tabela_model}]Repository;
+use [{namespace}]Forms\[{tabela_model}]Form;
+use Kris\LaravelFormBuilder\Form;
+use Illuminate\Http\Request;
+
+class [{tabela_model}]Controller extends Controller
+{
+
+    private $repository;
+
+    public function __construct([{tabela_model}]Repository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
+     * Lista todos os registros do sistema.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function index()
+    {
+        $filtros = request()->all();
+        $this->repository->pushCriteria(new [{tabela_model}]Criteria($filtros));
+        $dados $this->repository->paginate();
+        return view('[{tabela}].index', compact('dados', 'filtros'));
+    }
+
+    /**
+         * Show the form for creating a new resource.
+        *
+        * @return \Illuminate\Http\Response
+    */
+    public function create()
+    {
+        $form = \FormBuilder::create([{tabela_model}]Form::class,[
+            'url'=>route('[{tabela}].create.post'),
+            'method'=>'POST'
+        ]);
+
+        return view('[{tabela}].create',compact('form'));
+
+    }
+
+
+   /**
+       * Store a newly created resource in storage.
+       *
+       * @param  \Illuminate\Http\Request  $request
+       * @return \Illuminate\Http\Response
+       */
+      public function store(Request $request)
+      {
+          /** @var Form $form */
+          $form = \FormBuilder::create([{tabela_model}]Form::class);
+          if(!$form->isValid()){
+              return redirect()
+                  ->back()
+                  ->withErrors($form->getErrors())
+                  ->withInput();
+          }
+          $data = $form->getFieldValues();
+          $this->repository->create($data);
+
+          flash('[{titulo}] criado com sucesso!', 'success');
+
+          return redirect()->route('[{tabela}].index');
+      }
+
+        /**
+        * Show the form for editing the specified resource.
+        *
+        * @param  \[{namespace}]Models\[{tabela_model}] $[{var}]
+        * @return \Illuminate\Http\Response
+        */
+       public function edit([{tabela_model}] $[{var}])
+       {
+           $form = \FormBuilder::create([{tabela_model}]Form::class,[
+               'url'=>route('[{tabela}].edit.post',['[{var}]' => $[{var}]->id]),
+               'method'=>'PUT',
+               'model' => $[{var}]
+           ]);
+
+           return view('[{tabela}].edit',compact('form'));
+       }
+
+
+    /**
+         * Update the specified resource in storage.
+         *
+         * @param  \Illuminate\Http\Request  $request
+         * @param  \[{namespace}]Models\User  $[{var}]
+         * @return \Illuminate\Http\Response
+         */
+        public function update(Request $request, [{tabela_model}] $[{var}])
+        {
+            /** @var Form $form */
+            $form = \FormBuilder::create([{tabela_model}]Form::class,[
+                'data' => ['id' => $[{var}]->id],
+                'model' => $[{var}]
+            ]);
+            if(!$form->isValid()){
+                return redirect()
+                    ->back()
+                    ->withErrors($form->getErrors())
+                    ->withInput();
+            }
+            $data = $form->getFieldValues();
+            $this->repository->update($data,$[{var}]->id);
+            flash('[{titulo}] alterado com sucesso!!', 'success');
+            return redirect()->route('[{tabela}].index');
+        }
+
+
+     /**
+         * Remove the specified resource from storage.
+         *
+         * @param  \[{namespace}]Models\[{tabela_model}] $user
+         * @return \Illuminate\Http\Response
+         */
+        public function destroy($id)
+        {
+            $this->repository->delete($id);
+            flash('[{titulo}] deletado com sucesso!!', 'success');
+
+             return redirect()->route('[{tabela}].index');
+        }
+
+    /**
+     * Filtra um registro para os campos select2.
+     *
+     * @param
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function fill()
+    {
+        $request = request()->all();
+
+        $termo = $request['termo'];
+        $size = $request['size'];
+        $page = (!isset($request['page']) || $request['page'] < 1) ? 1 : $request['page'];
+
+        if (!isset($termo))
+            $termo = '';
+        if (!isset($size) || $size < 1)
+            $size = 10;
+
+        $find = [{tabela_model}]::where('descricao','like','%' . $termo . '%');
+	    if(!empty($request['campo'])){
+            $find->where($request['campo'],'=',$request['auxiliar']);
+        }
+        $count = $find->count();
+        $ret["more"] = (($size * ($page - 1)) >= (int)$count) ? false : true;
+        $ret["total"] = $count;
+        $ret["dados"] = array();
+        $find->limit($size);
+        $find->offset($size * ($page - 1));
+        $find->orderBy('descricao','asc');
+        $result = $find->get();
+        foreach ($result as $d) {
+            $ret["dados"][] = array('id' => $d->id, 'text' => $d->descricao);
+        }
+        return response()->json($ret);
+    }
+
+     /**
+         * Filtra um registro pelo id para atualizar os campos select2.
+         *
+         * @param int @id
+         *
+         * @return \Illuminate\Http\RedirectResponse
+     */
+     public function getedit($id)
+     {
+        $[{tabela}] = [{tabela_model}]::find($id);
+         $res = ['descicao'=>'selecione','id'=>null];
+           if(!empty($[{tabela}])){
+             $res = ['descricao'=>$[{tabela}]->descricao,'id'=>$[{tabela}]->id];
+           }
+           return response()->json($res);
+     }
+}

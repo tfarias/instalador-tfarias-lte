@@ -1,0 +1,34 @@
+<?php
+
+namespace [{namespace}]Repositories;
+
+use Prettus\Repository\Eloquent\BaseRepository;
+use Prettus\Repository\Criteria\RequestCriteria;
+use [{namespace}]Models\[{table}];
+
+/**
+ * Class [{table}]RepositoryEloquent
+ * @package namespace [{namespace}]Repositories;
+ */
+class [{table}]RepositoryEloquent extends BaseRepository implements [{table}]Repository
+{
+    /**
+     * Specify Model class name
+     *
+     * @return string
+     */
+    public function model()
+    {
+        return [{table}]::class;
+    }
+
+
+
+    /**
+     * Boot up the repository, pushing criteria
+     */
+    public function boot()
+    {
+        $this->pushCriteria(app(RequestCriteria::class));
+    }
+}

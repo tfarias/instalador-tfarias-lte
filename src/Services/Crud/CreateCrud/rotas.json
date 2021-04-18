@@ -1,0 +1,44 @@
+[
+    {
+        "tipo": "[{titulo_rota}]",
+        "desenv": "N",
+        "acesso_liberado": "N",
+        "slug": "[{route_as}].index",
+        "descricao": "[{titulo}] - Visualizar os registros"
+    },
+    {
+        "tipo": "[{titulo_rota}]",
+        "desenv": "N",
+        "acesso_liberado": "N",
+        "slug": "[{route_as}].create",
+        "descricao": "[{titulo}] - Adicionar um registro"
+    },
+    {
+        "tipo": "[{titulo_rota}]",
+        "desenv": "N",
+        "acesso_liberado": "N",
+        "slug": "[{route_as}].edit",
+        "descricao": "[{titulo}] - Alterar um registro"
+    },
+    {
+        "tipo": "[{titulo_rota}]",
+        "desenv": "N",
+        "acesso_liberado": "N",
+        "slug": "[{route_as}].destroy",
+        "descricao": "[{titulo}] - Excluir um registro"
+    },
+    {
+        "tipo": "[{titulo_rota}]",
+        "desenv": "N",
+        "acesso_liberado": "N",
+        "slug": "[{route_as}].fill",
+        "descricao": "[{titulo}] - Filtrar um registro"
+    },
+    {
+        "tipo": "[{titulo_rota}]",
+        "desenv": "N",
+        "acesso_liberado": "N",
+        "slug": "[{route_as}].getedit",
+        "descricao": "[{titulo}] - Filtrar um registro pelo id"
+    }
+]
