@@ -15,7 +15,7 @@ class [{tabela_model}] extends BaseModel implements TableInterface
     protected $fillable = ['id',[{fillable}]];
 
     protected $table = '[{tabela}]';
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'[{dates}]];
 
      public function getTableHeaders()
         {

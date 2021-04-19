@@ -98,7 +98,7 @@ class CriaForms
                             $inputs .= $schema->nlt(1).'"rules" => "'.$aux.'",';
                         }
 
-                        $inputs .= $schema->nlt(1).'"wrapper" => ["class" => "form-group col-md-6"]';
+                        $inputs .= $schema->nlt(1).'"wrapper" => ["class" => "form-group"]';
 
                         $inputs .= $schema->nlt(1).']);';
 

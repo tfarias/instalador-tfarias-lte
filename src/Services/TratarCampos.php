@@ -25,4 +25,10 @@ class TratarCampos
         $field = str_replace('_',' ',$label);
         return ucwords($field);
     }
+
+    public static function tratar_field($fi){
+        $field = str_replace('_',' ',$fi);
+        $field = ucwords($field);
+        return str_replace(' ','',$field);
+    }
 }

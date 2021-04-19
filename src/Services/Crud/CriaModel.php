@@ -2,6 +2,7 @@
 
 namespace Tfarias\InstaladorTfariasLte\Services\Crud;
 
+use Tfarias\InstaladorTfariasLte\Services\TratarCampos;
 use File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -62,7 +63,7 @@ class CriaModel
         $fillable = [];
         $fields = [];
         $table_value = "";
-
+      
         if (!empty($table)) {
             foreach ($table as $c) {
                 $c =  (object)$c;
@@ -81,9 +82,31 @@ class CriaModel
                 $table_value.=$schema->nlt(1);
                 $table_value.=$schema->nlt(1).'case "'.ucfirst($c->Field).'":';
                 $table_value.=$schema->nlt(1).'return $this->'.$c->Field.';';
+
+                if ((strpos($c->Type, 'date') !== false) || $c->Type == 'date') {
+                    $model = str_replace('[{dates}]', ",'".$c->Field."'[{dates}]", $model);
+                    $funcoes.= $schema->nlt(1);
+                    $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($data){';
+                    $funcoes.= $schema->nlt(1).'if(!empty($data)){';
+                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("Y-m-d", '.$data.');';
+                    $funcoes.= $schema->nlt(1).'}';
+                    $funcoes.= $schema->nlt(1).'}';
+                    
+                }
+
+                if ((strpos($c->Type, 'datetime') !== false) || $c->Type == 'datetime') {
+                    $model = str_replace('[{dates}]', ",'".$c->Field."'[{dates}]", $model);
+                    $funcoes.= $schema->nlt(1);
+                    $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($data){';
+                    $funcoes.= $schema->nlt(1).'if(!empty($data)){';
+                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("Y-m-d H:i", '.$data.');';
+                    $funcoes.= $schema->nlt(1).'}';
+                    $funcoes.= $schema->nlt(1).'}';
+                }
             }
         }
-
+        
+        $model = str_replace('[{dates}]', '', $model);
 
         $model = str_replace('[{fillable}]', implode(',',$fillable), $model);
         $model = str_replace('[{table_header}]', implode(',',$fields), $model);
