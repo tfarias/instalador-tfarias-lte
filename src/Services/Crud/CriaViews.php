@@ -51,10 +51,12 @@ class CriaViews
                                 </div>
                              </div>";
 
-    protected $campo_filtro= " <div class=\"form-group col-3 col-sm-6\">
-                            <label for=\"[{campo}]\">[{label}]</label>
-                             [{input}]
-                        </div>";
+    protected $campo_filtro= "<div class=\"col-3\">
+                                <div class=\"form-group\">
+                                    <label for=\"[{campo}]\">[{label}]</label>
+                                    [{input}]
+                                </div>
+                              </div>";
 
     protected $associacoes;
     /**
