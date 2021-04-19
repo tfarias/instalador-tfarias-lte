@@ -113,7 +113,7 @@ class CriaModel
                     $funcoes.= $schema->nlt(1);
                     $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($data){';
                     $funcoes.= $schema->nlt(1).'if(!empty($data)){';
-                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("Y-m-d", $data);';
+                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("d/m/Y", $data);';
                     $funcoes.= $schema->nlt(1).'}';
                     $funcoes.= $schema->nlt(1).'}';
                     
@@ -124,7 +124,7 @@ class CriaModel
                     $funcoes.= $schema->nlt(1);
                     $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($data){';
                     $funcoes.= $schema->nlt(1).'if(!empty($data)){';
-                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("Y-m-d H:i", $data);';
+                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("d/m/Y H:i", $data);';
                     $funcoes.= $schema->nlt(1).'}';
                     $funcoes.= $schema->nlt(1).'}';
                 }
