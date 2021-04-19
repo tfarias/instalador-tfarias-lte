@@ -1,6 +1,6 @@
 @extends('layouts.lte.template')
 @section('content_lte')
-<div class="this-place">
+<div class="this-place area">
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -9,15 +9,14 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('/')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item active">Listagem</li>
             </ol>
           </div>
         </div>
       </div>
     </div>
-  <div class="row area">
-    <section class="content ">
+    <section class="content">
       <div class="container-fluid">
           <div class="row">
                     <div class="col-12">
@@ -28,17 +27,19 @@
                           <!-- /.card-header -->
                           <div class="card-body">
                               <form action="{{ route('[{route_as}].index') }}" method="get" class="form-filter validate">
+                                    <div class="row">
                                     [{campos_formulario_filtro}]
-
-                                    <div class="col-md-4 pull-right">
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-12 pull-right">
                                         <div class="text-right">
                                             <a href="{{ route('[{route_as}].index') }}" class="btn btn-default" title="Clear"><i class="fa fa-refresh"></i></a>
                                             <button type="submit" title="Search" class="btn btn-default" id="btn-filter" name="acao" value="Search">
                                                 <i class="fa fa-search"></i> Search
                                             </button>
                                              @include('partials.buttons.lte.create', ['route' => '[{route_as}].create'])
-
                                         </div>
+                                   </div>
                                    </div>
                                     <div class="clearfix"></div>
 
@@ -56,8 +57,8 @@
                                   {!! Table::withContents($dados)->hover()
                                           ->callback('',function ($field,$dado){
                                                 $btn ="";
-                                                $btn.=@include('partials.buttons.lte.destroy', ['route' => '[{route_as}].destroy','param' => ['[{route_as}]'=>$dado->id]])
-                                                $btn.=@include('partials.buttons.lte.edit', ['route' => '[{route_as}].edit','param' => ['[{route_as}]'=>$dado->id]])
+                                                $btn.=Button::danger(Icon::create('remove'))->asLinkTo(route('[{route_as}].destroy',['[{route_as}]'=>$dado->id]))->addAttributes(['class'=>'btn-xs confirma-acao pull-right','data-texto'=>'Deseja mesmo excluir este registro?','id'=>'btn-excluir','toggle'=>'tooltip','title'=>'Deletar']);
+                                                $btn.=Button::success(Icon::create('pencil'))->asLinkTo(route('[{route_as}].edit',['[{route_as}]'=>$dado->id]))->addAttributes(['class'=>'btn-xs pull-right','toggle'=>'tooltip','title'=>'Editar']);
                                                 return $btn;
                                             })
                                   !!}
@@ -69,9 +70,7 @@
                         </div>
                     </div>
           </div>
-      </div>
     </section>
-  </div>
 </div>
 
 @endsection

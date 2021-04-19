@@ -1,6 +1,6 @@
 @extends('layouts.lte.template')
 @section('content_lte')
-<div class="this-place">
+<div class="this-place area">
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -16,7 +16,6 @@
         </div>
       </div>
     </div>
-  <div class="row area">
     <section class="content ">
       <div class="container-fluid">
           <div class="row">
@@ -37,7 +36,6 @@
           </div>
       </div>
     </section>
-  </div>
 </div>
 
 @endsection

@@ -42,7 +42,7 @@ class CriaViews
         'textarea' =>'<textarea name="[{campo}]" id="[{campo}]" class="form-control" placeholder="[{label}]" [{options}]>{{ isset($[{tabela}]) ? $[{tabela}]->[{campo}] : \'\' }}</textarea>',
     ];
 
-    protected $campo_form = "<div class=\"col-md-6\">
+    protected $campo_form = "<div class=\"col-6\">
                                 <div class=\"form-group\">
                                     <label class=\"control-label\" for=\"[{campo}]\">
                                         [{label}] [{required}]
@@ -51,7 +51,7 @@ class CriaViews
                                 </div>
                              </div>";
 
-    protected $campo_filtro= " <div class=\"form-group col-lg-3 col-sm-6\">
+    protected $campo_filtro= " <div class=\"form-group col-3 col-sm-6\">
                             <label for=\"[{campo}]\">[{label}]</label>
                              [{input}]
                         </div>";
