@@ -61,10 +61,11 @@ class CriaForms
                     }
 
                     if($c->Key == 'UNI') {
+                        $request = str_replace('[{id_uni}]', '$id = $this->getData("id");', $request);
                         if($passou==1)
-                            $aux .= "|unique:{$tabela},{$c->Field}";
+                            $aux .= '|unique:'.$tabela.','.$c->Field.',$id';
                         else{
-                            $aux .= "unique:{$tabela},{$c->Field}";
+                            $aux .= 'unique:'.$tabela.','.$c->Field.',$id';
                         }
                         $passou =1;
                     }

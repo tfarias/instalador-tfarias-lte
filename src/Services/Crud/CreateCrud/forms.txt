@@ -9,6 +9,9 @@ class [{tabela_model}]Form extends Form
 {
     public function buildForm()
     {
+
+        [{id_uni}]
+
         [{campos}]
         $this
            ->add('submit', 'submit', ['label' =>  Icon::create('pencil').' Salvar','attr'=>['class'=>'btn btn-primary btn-send-form pull-left']])
