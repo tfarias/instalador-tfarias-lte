@@ -84,6 +84,8 @@ var sistema = {
   {
     sistema.configurarAjax();
     sistema.aplicarPluginsExternos();
+
+    $('[toggle="tooltip"]').tooltip();
   
   });
   
