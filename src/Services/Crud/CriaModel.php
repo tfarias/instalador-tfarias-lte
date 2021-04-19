@@ -13,6 +13,7 @@ class CriaModel
     protected $template = __DIR__.'/CreateCrud/model.txt';
     protected $base_model = __DIR__.'/CreateCrud/base_model.txt';
     protected $base_uuid = __DIR__.'/CreateCrud/traid_uuid.txt';
+    protected $base_currency = __DIR__.'/CreateCrud/traid_currency.txt';
     protected $tabela;
     protected $dbschema;
     /**
@@ -51,6 +52,12 @@ class CriaModel
             File::put(base_path('app/Models/Traits/Uuid.php'), $traid);
         }
 
+        if (!File::isFile(base_path('app/Models/Traits/Currency.php'))) {
+            $traid = File::get($this->base_currency);
+            $traid = str_replace('[{namespace}]', $this->getAppNamespace(), $traid);
+            File::put(base_path('app/Models/Traits/Currency.php'), $traid);
+        }
+
         $model = File::get($this->template);
         $model = str_replace('[{tabela}]', $tabela, $model);
         $model = str_replace('[{tabela_model}]', $classe, $model);
@@ -83,12 +90,22 @@ class CriaModel
                 $table_value.=$schema->nlt(1).'case "'.ucfirst($c->Field).'":';
                 $table_value.=$schema->nlt(1).'return $this->'.$c->Field.';';
 
+                if ((strpos($c->Type, 'decimal') !== false) || $c->Type == 'decimal') {
+                    $funcoes.= $schema->nlt(1);
+                    $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($money){';
+                    $funcoes.= $schema->nlt(1).'if(!empty($money)){';
+                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \App\Models\Traits\Currency::get_amount($money);';
+                    $funcoes.= $schema->nlt(1).'}';
+                    $funcoes.= $schema->nlt(1).'}';
+                    
+                }
+
                 if ((strpos($c->Type, 'date') !== false) || $c->Type == 'date') {
                     $model = str_replace('[{dates}]', ",'".$c->Field."'[{dates}]", $model);
                     $funcoes.= $schema->nlt(1);
                     $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($data){';
                     $funcoes.= $schema->nlt(1).'if(!empty($data)){';
-                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("Y-m-d", '.$data.');';
+                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("Y-m-d", $data);';
                     $funcoes.= $schema->nlt(1).'}';
                     $funcoes.= $schema->nlt(1).'}';
                     
@@ -99,7 +116,7 @@ class CriaModel
                     $funcoes.= $schema->nlt(1);
                     $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($data){';
                     $funcoes.= $schema->nlt(1).'if(!empty($data)){';
-                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("Y-m-d H:i", '.$data.');';
+                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("Y-m-d H:i", $data);';
                     $funcoes.= $schema->nlt(1).'}';
                     $funcoes.= $schema->nlt(1).'}';
                 }
