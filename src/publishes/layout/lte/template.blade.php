@@ -45,8 +45,8 @@
     @yield('content_lte')
   </div>
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+    <strong>Copyright &copy; 2014-{{date('Y')}} <a href="https://www.linkedin.com/in/tfariasg3/">Tiago F S</a>.</strong>
+    <a href="https://adminlte.io">Layout AdminLTE.io</a>
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 3.1.0
     </div>
