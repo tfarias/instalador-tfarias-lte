@@ -13,7 +13,8 @@
             "providers": [
                 "Tfarias\\InstaladorTfariasLte\\TfariasInstaladorLteServiceProvider",
                 "Bootstrapper\\BootstrapperL5ServiceProvider",
-                "Kris\\LaravelFormBuilder\\FormBuilderServiceProvider"
+                "Kris\\LaravelFormBuilder\\FormBuilderServiceProvider",
+                "Prettus\\Repository\\Providers\\RepositoryServiceProvider"
             ],
             "aliases": {
                 "Accordion": "Bootstrapper\\Facades\\Accordion",
