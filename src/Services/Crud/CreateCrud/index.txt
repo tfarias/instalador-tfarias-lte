@@ -57,8 +57,8 @@
                                   {!! Table::withContents($dados)->hover()
                                           ->callback('',function ($field,$dado){
                                                 $btn ="";
-                                                $btn.=Button::danger(Icon::create('remove'))->asLinkTo(route('[{route_as}].destroy',['[{route_as}]'=>$dado->id]))->addAttributes(['class'=>'btn-xs confirma-acao pull-right','data-texto'=>'Deseja mesmo excluir este registro?','id'=>'btn-excluir','toggle'=>'tooltip','title'=>'Deletar']);
-                                                $btn.=Button::success(Icon::create('pencil'))->asLinkTo(route('[{route_as}].edit',['[{route_as}]'=>$dado->id]))->addAttributes(['class'=>'btn-xs pull-right','toggle'=>'tooltip','title'=>'Editar']);
+                                                $btn.=Button::danger('<i class="fas fa-trash"></i>')->asLinkTo(route('[{route_as}].destroy',['[{route_as}]'=>$dado->id]))->addAttributes(['class'=>'btn-xs confirma-acao pull-right','data-texto'=>'Deseja mesmo excluir este registro?','id'=>'btn-excluir','toggle'=>'tooltip','title'=>'Deletar']);
+                                                $btn.=Button::success('<i class="fas fa-edit"></i>')->asLinkTo(route('[{route_as}].edit',['[{route_as}]'=>$dado->id]))->addAttributes(['class'=>'btn-xs pull-right','toggle'=>'tooltip','title'=>'Editar']);
                                                 return $btn;
                                             })
                                   !!}
