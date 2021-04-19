@@ -107,6 +107,14 @@ class CriaForms
                         $inputs .= TratarCampos::tratar_input_form($c, $schema);
                         $inputs .= $schema->nlt(1).'"label"=>"'. TratarCampos::tratar_label($c->Field).'",';
 
+
+                        if ((strpos($c->Type, 'date') !== false) || $c->Type == 'date') {
+                            $inputs .= $schema->nlt(1) . '"value" => $this->model ? $this->model->'.$c->Field.'->format("d/m/Y") : "",';
+                        }
+                        if ((strpos($c->Type, 'datetime') !== false) || $c->Type == 'datetime') {
+                            $inputs .= $schema->nlt(1) . '"value" => $this->model ? $this->model->'.$c->Field.'->format("d/m/Y H:i") : "",';
+                        }
+
                         //TODO tratar os campos de forms
                       $is_attr = false;
                         if((strpos($c->Type, 'date') !== false)  || (strpos($c->Type, 'datetime') !== false) ||  ($c->Field=='cpf') || (strpos($c->Type, 'decimal') !== false)) {

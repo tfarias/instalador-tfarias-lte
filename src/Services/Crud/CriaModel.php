@@ -88,7 +88,15 @@ class CriaModel
                 $fields[] = "'".ucfirst($c->Field)."'";
                 $table_value.=$schema->nlt(1);
                 $table_value.=$schema->nlt(1).'case "'.ucfirst($c->Field).'":';
-                $table_value.=$schema->nlt(1).'return $this->'.$c->Field.';';
+                if ((strpos($c->Type, 'date') !== false) || $c->Type == 'date') {
+                    $table_value.=$schema->nlt(1).'return $this->'.$c->Field.'->format("d/m/Y");';
+                }elseif ((strpos($c->Type, 'datetime') !== false) || $c->Type == 'datetime') {
+                    $table_value.=$schema->nlt(1).'return $this->'.$c->Field.'->format("d/m/Y H:i");';
+                }else{
+                    $table_value.=$schema->nlt(1).'return $this->'.$c->Field.';';
+                }
+
+                
 
                 if ((strpos($c->Type, 'decimal') !== false) || $c->Type == 'decimal') {
                     $funcoes.= $schema->nlt(1);

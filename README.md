@@ -10,8 +10,7 @@ Tfarias\InstaladorTfariasLte\TfariasInstaladorLteServiceProvider::class,
 
 ```bash
 # Após isso rodar o comando
-$ php artisan vendor:publish
-e escolher o repositorio
+$ php artisan vendor:publish --provider "Tfarias\InstaladorTfariasLte\TfariasInstaladorLteServiceProvider"
 
 # app/Providers/RepositoryServiceProvider.php
 caso ja tenha esse arquivo, deve-se ser adicionado essas chaves

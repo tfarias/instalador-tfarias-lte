@@ -22,3 +22,5 @@
   <link href="{{asset('lte/plugins/summernote/summernote-bs4.min.css')}}" rel="stylesheet">
 
   <link href="{{asset('lte/plugins/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet">
+
+  <link href="{{asset('lte/dist/css/glob.css')}}" rel="stylesheet">
