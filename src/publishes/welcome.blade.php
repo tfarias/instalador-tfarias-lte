@@ -28,6 +28,9 @@
                             <div class="card-body">
                                 <h3>Bem vindo</h3>
                                 <p>Obrigado por utilizar o instalador!</p>
+                                <p>Não esqueça de dar uma estrelinha no meu repositório do github: <a href="https://github.com/tfarias/instalador-tfarias-lte" target="_blank">https://github.com/tfarias/instalador-tfarias-lte</a></p>
+
+
                             </div>
                         </div>
 
