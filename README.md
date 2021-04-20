@@ -25,3 +25,20 @@ para executar os comando primeiro você deve fazer e rodar suas migrations
 após isso:
 
 $ php artisan create-lte
+
+## Filtros
+
+```bash
+#
+ Para os campos que deseja ter os filtros basta adicionar um comment na migration
+
+exemplo
+
+   Schema::create('tipo', function (Blueprint $table) {
+            $table->uuid('id')->primary()->unique();
+            $table->string('descricao')->comment('filter');
+            $table->timestamps();
+      });
+
+      na migration acima a coluna descricao vai constar nos filtros
+```
