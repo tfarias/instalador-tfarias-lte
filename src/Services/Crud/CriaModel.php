@@ -40,10 +40,10 @@ class CriaModel
             File::makeDirectory(base_path('app/Models/Traits'));
         }
 
-        if (!File::isFile(base_path('app/Models/BaseModels.php'))) {
+        if (!File::isFile(base_path('app/Models/BaseModel.php'))) {
             $base_model = File::get($this->base_model);
             $base_model = str_replace('[{namespace}]', $this->getAppNamespace(), $base_model);
-            File::put(base_path('app/Models/BaseModels.php'), $base_model);
+            File::put(base_path('app/Models/BaseModel.php'), $base_model);
         }
 
         if (!File::isFile(base_path('app/Models/Traits/Uuid.php'))) {

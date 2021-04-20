@@ -14,7 +14,7 @@ ecolhe o provider:  "Tfarias\InstaladorTfariasLte\TfariasInstaladorLteServicePro
 
   adicionar no config/app.php
 
-# app/Providers/RepositoryServiceProvider.php,
+# App\Providers\RepositoryServiceProvider::class,
 
 
 ```

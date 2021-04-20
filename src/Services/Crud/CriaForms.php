@@ -166,7 +166,7 @@ class CriaForms
 
                 }
 
-
+            $request = str_replace('[{id_uni}]', '', $request);
 
             $request = str_replace('[{campos}]', $inputs, $request);
             $request = str_replace('[{namespace}]', Container::getInstance()->getNamespace(), $request);
