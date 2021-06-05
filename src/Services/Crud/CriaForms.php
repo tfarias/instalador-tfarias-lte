@@ -110,7 +110,7 @@ class CriaForms
                         $inputs .= $schema->nlt(1).'"label"=>"'. TratarCampos::tratar_label($c->Field).'",';
 
 
-                        if ((strpos($c->Type, 'date') !== false) || $c->Type == 'date') {
+                        if (((strpos($c->Type, 'date') !== false) && (strpos($c->Type, 'datetime') === false))  || $c->Type == 'date') {
                             $inputs .= $schema->nlt(1) . '"value" => $this->model ? $this->model->'.$c->Field.'->format("d/m/Y") : "",';
                         }
                         if ((strpos($c->Type, 'datetime') !== false) || $c->Type == 'datetime') {
@@ -123,7 +123,7 @@ class CriaForms
                             $is_attr = true;
                             $inputs .= $schema->nlt(1) . '"attr" => [';
 
-                            if ((strpos($c->Type, 'date') !== false) || $c->Type == 'date') {
+                            if (((strpos($c->Type, 'date') !== false) && (strpos($c->Type, 'datetime') === false))  || $c->Type == 'date') {
                                 $inputs .= $schema->nlt(1) . '"mask" => "date",';
                             }
                             if ((strpos($c->Type, 'datetime') !== false) || $c->Type == 'datetime') {

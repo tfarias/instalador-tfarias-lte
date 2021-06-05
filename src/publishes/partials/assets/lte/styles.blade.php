@@ -12,7 +12,6 @@
   <link href="{{asset('lte/plugins/jqvmap/jqvmap.min.css')}}" rel="stylesheet">
   <!-- Theme style -->
   <link href="{{asset('lte/dist/css/adminlte.min.css')}}" rel="stylesheet">
-  <link href="{{asset('lte/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet">
   <link href="{{asset('lte/plugins/datepicker/css/datepicker3.css')}}" rel="stylesheet">
   <!-- overlayScrollbars -->
   <link href="{{asset('lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}" rel="stylesheet">

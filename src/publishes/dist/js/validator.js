@@ -1,5 +1,5 @@
-(function($) {
-    $.fn.formValidator = function() {
+(function ($) {
+    $.fn.formValidator = function () {
         var passwordValue;
         var emailValue;
         var is;
@@ -81,25 +81,25 @@
             cep: function validateCEP(value, element) {
 
                 $.ajax({
-                    url: SITE_PATH+'/cep/' + value,
+                    url: SITE_PATH + '/cep/' + value,
                     type: 'GET'
                 }).done(function (jsonString) {
                     var json = $.parseJSON(jsonString);
-                     var form = element.closest('form');
-                    if (json.resultado==1) {
-                        $form.find('.estado').each(function(){
+                    var form = element.closest('form');
+                    if (json.resultado == 1) {
+                        $form.find('.estado').each(function () {
                             success($(this));
                             $(this).val(json.estado)
                         })
-                        $form.find('.cidade').each(function(){
+                        $form.find('.cidade').each(function () {
                             success($(this));
                             $(this).val(json.cidade)
                         })
-                        $form.find('.bairro').each(function(){
+                        $form.find('.bairro').each(function () {
                             success($(this));
                             $(this).val(json.bairro)
                         })
-                        $form.find('.endereco').each(function(){
+                        $form.find('.endereco').each(function () {
                             success($(this));
                             $(this).val(json.tipo_logradouro + " " + json.logradouro)
                         })
@@ -112,32 +112,32 @@
 
                 })
 
-                if(empty($('#' + element.attr('id') + '_element_error').html())){
+                if (empty($('#' + element.attr('id') + '_element_error').html())) {
                     return success(element);
                 }
             },
             cep_old: function validateCEP(value, element) {
                 $.ajax({
-                    url: SITE_PATH+'/cep/' + value,
+                    url: SITE_PATH + '/cep/' + value,
                     type: 'GET'
                 }).done(function (jsonString) {
 
                     var json = $.parseJSON(jsonString);
                     // var form = element.closest('form');
-                    if (json.resultado==1) {
-                        $form.find('.estado_old').each(function(){
+                    if (json.resultado == 1) {
+                        $form.find('.estado_old').each(function () {
                             success($(this));
                             $(this).val(json.estado)
                         })
-                        $form.find('.cidade_old').each(function(){
+                        $form.find('.cidade_old').each(function () {
                             success($(this));
                             $(this).val(json.cidade)
                         })
-                        $form.find('.bairro_old').each(function(){
+                        $form.find('.bairro_old').each(function () {
                             success($(this));
                             $(this).val(json.bairro)
                         })
-                        $form.find('.endereco_old').each(function(){
+                        $form.find('.endereco_old').each(function () {
                             success($(this));
                             $(this).val(json.tipo_logradouro + " " + json.logradouro)
                         })
@@ -149,7 +149,7 @@
                     }
 
                 })
-                if(empty($('#' + element.attr('id') + '_element_error').html())){
+                if (empty($('#' + element.attr('id') + '_element_error').html())) {
                     return success(element);
                 }
             },
@@ -157,7 +157,7 @@
                 $.ajax({
                     url: '//app.credseguro.com.br/webservice/' + value,
                     type: 'GET',
-                }).done(function(jsonString) {
+                }).done(function (jsonString) {
                     var json = $.parseJSON(jsonString);
                     var form = element.closest('form');
                     if (json.success) {
@@ -177,7 +177,7 @@
                     } else {
                         return error(element);
                     }
-                }).fail(function() {
+                }).fail(function () {
                     return error(element);
                 });
             },
@@ -235,7 +235,7 @@
             cnpj: function cnpjMask(e) {
                 e.mask("99.999.999/9999-99");
             },
-            cpf_cnpj: function cpfCnpjMask(e) {},
+            cpf_cnpj: function cpfCnpjMask(e) { },
             date: function dateMask(e) {
                 e.mask("99/99/9999");
                 e.datepicker({
@@ -244,29 +244,12 @@
                     language: "pt-BR",
                     calendarWeeks: false,
                     autoclose: true
-                }).on('hide', function(e) {
+                }).on('hide', function (e) {
                     genericValidationElement($(this));
                 });
             },
             datetime: function dateMask(e) {
                 e.mask("99/99/9999 99:99");
-
-                e.datetimepicker({
-                    locale: 'pt-br',
-                    sideBySide: true,
-                    extraFormats: ['YYYY-MM-DD HH:mm:ss', 'YYYY-MM-DD'],
-                    showTodayButton: true,
-                    useStrict: true,
-                    showClear: true,
-                    allowInputToggle: true,
-                    widgetPositioning: {
-                        horizontal: 'auto',
-                        vertical: 'bottom'
-                    }
-                }).on('dp.show', function (e) {
-                    var widget = $('.bootstrap-datetimepicker-widget:last')
-                    widget.addClass('piker-widget')
-                });
 
             },
             mesAno: function dateMask(e) {
@@ -281,16 +264,16 @@
                     startDate: "today",
                     calendarWeeks: false,
                     autoclose: true
-                }).on('hide', function(e) {
+                }).on('hide', function (e) {
                     genericValidationElement($(this));
                 });
             },
             phone: function phoneMask(e) {
-                var SPMaskBehavior = function(val) {
-                        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-                    },
+                var SPMaskBehavior = function (val) {
+                    return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+                },
                     spOptions = {
-                        onKeyPress: function(val, e, field, options) {
+                        onKeyPress: function (val, e, field, options) {
                             field.mask(SPMaskBehavior.apply({}, arguments), options);
                         }
                     };
@@ -316,8 +299,8 @@
 
 
         function init() {
-            $('form').each(function() {
-                $(this).find('input').each(function(i) {
+            $('form').each(function () {
+                $(this).find('input').each(function (i) {
                     var attr = $(this).attr('is');
                     if (!(typeof attr !== typeof undefined && attr !== false)) {
                         attr = $(this).attr('mask');
@@ -469,18 +452,18 @@
             valor = valor.replace(/(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})(\d{1,2})/, "$1.$2.$3/$4-$5");
             return valor;
         }
-        $(this).on('blur', 'input[is]', function() {
+        $(this).on('blur', 'input[is]', function () {
             genericValidationElement($(this))
         });
-        $(this).on('keyup', 'input[is]', function() {
+        $(this).on('keyup', 'input[is]', function () {
             genericValidationElement($(this))
         });
-        $(this).on('change', 'select[is]', function() {
+        $(this).on('change', 'select[is]', function () {
             genericValidationElement($(this))
         });
-        $(this).submit(function(event) {
+        $(this).submit(function (event) {
             var validationFail = false;
-            $(this).find('select').each(function() {
+            $(this).find('select').each(function () {
                 var attr = $(this).attr('is');
                 if (attr == 'required') {
                     if ($(this).val() == "") {
@@ -493,7 +476,7 @@
                     }
                 }
             });
-            $(this).find('textarea').each(function() {
+            $(this).find('textarea').each(function () {
                 var attr = $(this).attr('is');
                 if (attr == 'required') {
                     if ($(this).text() == "") {
@@ -506,7 +489,7 @@
                     }
                 }
             });
-            $(this).find('input').each(function(i) {
+            $(this).find('input').each(function (i) {
                 var attr = $(this).attr('is');
                 var mask = $(this).attr('mask');
                 if (typeof attr !== typeof undefined && attr !== false) {
@@ -547,7 +530,7 @@
             }
             if (typeof fn === "function") {
                 return true;
-               // return fn(v, element);
+                // return fn(v, element);
             }
             return false;
         }
