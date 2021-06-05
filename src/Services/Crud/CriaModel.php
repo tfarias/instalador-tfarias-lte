@@ -70,7 +70,7 @@ class CriaModel
         $fillable = [];
         $fields = [];
         $table_value = "";
-      
+
         if (!empty($table)) {
             foreach ($table as $c) {
                 $c =  (object)$c;
@@ -96,18 +96,18 @@ class CriaModel
                     $table_value.=$schema->nlt(1).'return $this->'.$c->Field.';';
                 }
 
-                
+
 
                 if ((strpos($c->Type, 'decimal') !== false) || $c->Type == 'decimal') {
-                    $model = str_replace('[{currency}]', '', ',Currency');
-                    $model = str_replace('[{use_currency}]', '', 'use App\Models\Traits\Currency;');
+                    $model = str_replace('[{currency}]', ',Currency', $model);
+                    $model = str_replace('[{use_currency}]', 'use App\Models\Traits\Currency;', $model);
                     $funcoes.= $schema->nlt(1);
                     $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($money){';
                     $funcoes.= $schema->nlt(1).'if(!empty($money)){';
                     $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = self::getAmount($money);';
                     $funcoes.= $schema->nlt(1).'}';
                     $funcoes.= $schema->nlt(1).'}';
-                    
+
                 }
 
                 if ((strpos($c->Type, 'date') !== false) || $c->Type == 'date') {
@@ -118,7 +118,7 @@ class CriaModel
                     $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("d/m/Y", $data);';
                     $funcoes.= $schema->nlt(1).'}';
                     $funcoes.= $schema->nlt(1).'}';
-                    
+
                 }
 
                 if ((strpos($c->Type, 'datetime') !== false) || $c->Type == 'datetime') {
@@ -132,10 +132,10 @@ class CriaModel
                 }
             }
         }
-        
+
         $model = str_replace('[{dates}]', '', $model);
-        $model = str_replace('[{currency}]', '', '');
-        $model = str_replace('[{use_currency}]', '', '');
+        $model = str_replace('[{currency}]', '', $model);
+        $model = str_replace('[{use_currency}]', '', $model);
 
         $model = str_replace('[{fillable}]', implode(',',$fillable), $model);
         $model = str_replace('[{table_header}]', implode(',',$fields), $model);
