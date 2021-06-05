@@ -21,7 +21,7 @@
 <!-- daterangepicker -->
 <script src="{{asset('lte/plugins/moment/moment.min.js') }}"></script>
 <script src="{{asset('lte/plugins/daterangepicker/daterangepicker.js') }}"></script>
-
+<script src="{{ asset('lte/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
 <script src="{{ asset('lte/plugins/datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('lte/plugins/datepicker/js/bootstrap-datepicker.pt-BR.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
