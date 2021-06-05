@@ -1,2 +1,2 @@
-    Route::resource('[{prefix}]', '[{classe}]Controller');
+    Route::resource('[{prefix}]', '[{namespace}]\Http\Controllers\[{classe}]Controller');
    

@@ -102,7 +102,7 @@ class CriaModel
                     $model = str_replace('[{currency}]', ',Currency', $model);
                     $model = str_replace('[{use_currency}]', 'use App\Models\Traits\Currency;', $model);
                     $funcoes.= $schema->nlt(1);
-                    $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($money){';
+                    $funcoes.='protected function set'.TratarCampos::tratar_field($c->Field).'Attribute($money){';
                     $funcoes.= $schema->nlt(1).'if(!empty($money)){';
                     $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = self::getAmount($money);';
                     $funcoes.= $schema->nlt(1).'}';
@@ -110,10 +110,10 @@ class CriaModel
 
                 }
 
-                if ((strpos($c->Type, 'date') !== false) || $c->Type == 'date') {
+                if (((strpos($c->Type, 'date') !== false) && (strpos($c->Type, 'datetime') === false)) || $c->Type == 'date') {
                     $model = str_replace('[{dates}]', ",'".$c->Field."'[{dates}]", $model);
                     $funcoes.= $schema->nlt(1);
-                    $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($data){';
+                    $funcoes.='protected function set'.TratarCampos::tratar_field($c->Field).'Attribute($data){';
                     $funcoes.= $schema->nlt(1).'if(!empty($data)){';
                     $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("d/m/Y", $data);';
                     $funcoes.= $schema->nlt(1).'}';
@@ -124,7 +124,7 @@ class CriaModel
                 if ((strpos($c->Type, 'datetime') !== false) || $c->Type == 'datetime') {
                     $model = str_replace('[{dates}]', ",'".$c->Field."'[{dates}]", $model);
                     $funcoes.= $schema->nlt(1);
-                    $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($data){';
+                    $funcoes.='protected function set'.TratarCampos::tratar_field($c->Field).'Attribute($data){';
                     $funcoes.= $schema->nlt(1).'if(!empty($data)){';
                     $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \Carbon\Carbon::createFromFormat("d/m/Y H:i", $data);';
                     $funcoes.= $schema->nlt(1).'}';

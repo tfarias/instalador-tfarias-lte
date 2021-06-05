@@ -60,6 +60,7 @@ class CriarController
             $modelo = str_replace('[{prefix}]', $routeAs, $modelo);
             $modelo = str_replace('[{route_as}]', $routeAs, $modelo);
             $modelo = str_replace('[{classe}]', $classe, $modelo);
+            $modelo = str_replace('[{namespace}]', Container::getInstance()->getNamespace(), $modelo);
             $web .= $this->schema->nlt(1);
             $web .= $modelo;
             File::put(base_path('routes/web.php'), $web);
