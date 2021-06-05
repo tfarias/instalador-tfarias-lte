@@ -21,6 +21,7 @@ class TfariasInstaladorLteServiceProvider extends ServiceProvider
             __DIR__ . '/publishes/SelectController.php' => base_path('app/Http/Controllers/SelectController.php'),
             __DIR__ . '/publishes/BaseModel.php' => base_path('app/Models/BaseModel.php'),
             __DIR__ . '/publishes/welcome.blade.php' => base_path('resources/views/welcome.blade.php'),
+            __DIR__ . '/publishes/web.php' => base_path('routes/web.php'),
         ]);
 
     }
