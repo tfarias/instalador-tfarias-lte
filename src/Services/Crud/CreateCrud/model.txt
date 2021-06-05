@@ -3,10 +3,11 @@
 namespace [{namespace}]Models;
 use Bootstrapper\Interfaces\TableInterface;
 use App\Models\Traits\Uuid;
+[{use_currency}]
 
 class [{tabela_model}] extends BaseModel implements TableInterface
 {
-    use Uuid;
+    use Uuid[{currency}];
     public $incrementing = false;
     protected $keyType = "string";
 

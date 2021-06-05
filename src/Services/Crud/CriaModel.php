@@ -99,10 +99,12 @@ class CriaModel
                 
 
                 if ((strpos($c->Type, 'decimal') !== false) || $c->Type == 'decimal') {
+                    $model = str_replace('[{currency}]', '', ',Currency');
+                    $model = str_replace('[{use_currency}]', '', 'use App\Models\Traits\Currency;');
                     $funcoes.= $schema->nlt(1);
                     $funcoes.='public function set'.TratarCampos::tratar_field($c->Field).'Attribute($money){';
                     $funcoes.= $schema->nlt(1).'if(!empty($money)){';
-                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = \App\Models\Traits\Currency::get_amount($money);';
+                    $funcoes.= $schema->nlt(1).'$this->attributes["'.$c->Field.'"] = self::getAmount($money);';
                     $funcoes.= $schema->nlt(1).'}';
                     $funcoes.= $schema->nlt(1).'}';
                     
@@ -132,6 +134,8 @@ class CriaModel
         }
         
         $model = str_replace('[{dates}]', '', $model);
+        $model = str_replace('[{currency}]', '', '');
+        $model = str_replace('[{use_currency}]', '', '');
 
         $model = str_replace('[{fillable}]', implode(',',$fillable), $model);
         $model = str_replace('[{table_header}]', implode(',',$fields), $model);
