@@ -74,9 +74,9 @@ class CriaForms
                     if($c->Key == 'MUL') {
                         if(!empty($referencia)){
                             if($passou==1)
-                                $aux .= "|integer|exists:{$referencia[0]->reftable},id";
+                                $aux .= "|exists:{$referencia[0]->reftable},id";
                             else{
-                                $aux .= "integer|exists:{$referencia[0]->reftable},id";
+                                $aux .= "exists:{$referencia[0]->reftable},id";
                             }
                         }
                         $passou =1;
