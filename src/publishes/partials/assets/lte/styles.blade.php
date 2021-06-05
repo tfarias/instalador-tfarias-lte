@@ -23,4 +23,7 @@
 
   <link href="{{asset('lte/plugins/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet">
 
+  <link href="{{asset('lte/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+  <link href="{{asset('lte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}" rel="stylesheet">
+  
   <link href="{{asset('lte/dist/css/glob.css')}}" rel="stylesheet">

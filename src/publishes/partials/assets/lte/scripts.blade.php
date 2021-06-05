@@ -31,6 +31,8 @@
 <!-- overlayScrollbars -->
 <script src="{{asset('lte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 
+<script src="{{ asset('lte/plugins/select2/js/select2.full.js') }}"></script>
+
 <script src="{{ asset('lte/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('lte/dist/js/adminlte.js')}}"></script>

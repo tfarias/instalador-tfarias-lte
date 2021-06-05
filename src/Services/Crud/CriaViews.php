@@ -177,8 +177,7 @@ class CriaViews
 
 
                 if(!empty($assoc)){
-                    $options.=" data=\"select\" action=\"{{route('".$assoc->reftable.".fill')}}\" ";
-                    $options.=" {{!empty(request('".$c->Field."')) ? 'sel=update update='.route('".$assoc->reftable.".getedit',request('".$c->Field."')) : ''}} ";
+                        $options.=" data=\"select\" campo=\"name\" model=\"$assoc->reftable\" ";
                         $stringCampos = str_replace('[{label}]', ucfirst(Str::camel($assoc->reftable)), $stringCampos);
                     }else{
                         $stringCampos = str_replace('[{label}]', ucfirst(Str::camel($c->Field)), $stringCampos);

@@ -18,6 +18,7 @@ class TfariasInstaladorLteServiceProvider extends ServiceProvider
             __DIR__ . '/publishes/plugins' => base_path('public/lte/plugins'),
             __DIR__ . '/publishes/permissoes.json' => base_path('database/seeds/data/permissoes.json'),
             __DIR__ . '/publishes/RepositoryServiceProvider.php' => base_path('app/Providers/RepositoryServiceProvider.php'),
+            __DIR__ . '/publishes/SelectController.php' => base_path('app/Http/Controllers/SelectController.php'),
             __DIR__ . '/publishes/BaseModel.php' => base_path('app/Models/BaseModel.php'),
             __DIR__ . '/publishes/welcome.blade.php' => base_path('resources/views/welcome.blade.php'),
         ]);
