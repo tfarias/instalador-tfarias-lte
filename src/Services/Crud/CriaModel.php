@@ -85,10 +85,10 @@ class CriaModel
                     continue;
                 }
 
-                $fields[] = "'".ucfirst($c->Field)."'";
+                $fields[] = "'".TratarCampos::tratar_label($c->Field)."'";
                 $table_value.=$schema->nlt(1);
-                $table_value.=$schema->nlt(1).'case "'.ucfirst($c->Field).'":';
-                if ((strpos($c->Type, 'date') !== false) || $c->Type == 'date') {
+                $table_value.=$schema->nlt(1).'case "'.TratarCampos::tratar_label($c->Field).'":';
+                if (((strpos($c->Type, 'date') !== false) && (strpos($c->Type, 'datetime') === false))|| $c->Type == 'date') {
                     $table_value.=$schema->nlt(1).'return $this->'.$c->Field.'->format("d/m/Y");';
                 }elseif ((strpos($c->Type, 'datetime') !== false) || $c->Type == 'datetime') {
                     $table_value.=$schema->nlt(1).'return $this->'.$c->Field.'->format("d/m/Y H:i");';
@@ -154,7 +154,7 @@ class CriaModel
                 $funcoes.= $schema->nlt(1) .'* ' . ucfirst($tabela) . ' pertence a ' . ucfirst($v->reftable);
                 $funcoes.= $schema->nlt(1) . '* @return \Illuminate\Database\Eloquent\Relations\BelongsTo ';
                 $funcoes.=  $schema->nlt(1) . '*/';
-                $funcoes.=  $schema->nlt(1) . 'function ' . $mname . '() {';
+                $funcoes.=  $schema->nlt(1) . 'public function ' . $mname . '() {';
                 $funcoes.=  $schema->nlt(2) . 'return $this->belongsTo(\\'.$this->getAppNamespace().'Models\\' . ucfirst(Str::camel($v->reftable)) . '::class,\'' . $v->fk . '\',\'' . $v->refpk . '\');';
                 $funcoes.=  $schema->nlt(1) . "}";
             }
@@ -169,7 +169,7 @@ class CriaModel
                 $funcoes.=$schema->nlt(1) . '* ' . ucfirst($tabela) . ' possui ' . $schema->getPlural(ucfirst($v->table));
                 $funcoes.=$schema->nlt(1) . '* @return \Illuminate\Database\Eloquent\Relations\HasMany';
                 $funcoes.=$schema->nlt(1) . '*/';
-                $funcoes.=$schema->nlt(1) . 'function ' . $mname . '() {';
+                $funcoes.=$schema->nlt(1) . 'public function ' . $mname . '() {';
                 $funcoes.=$schema->nlt(2) . 'return $this->hasMany(\\'.$this->getAppNamespace().'Models\\' . ucfirst(Str::camel($v->table)) . '::class,\'' . $v->fk . '\',\'' . $v->refpk . '\');';
                 $funcoes.=$schema->nlt(1) . "}";
             }

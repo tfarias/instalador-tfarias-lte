@@ -14,6 +14,8 @@ class TratarCampos
                 return $schema->nlt(1) . '$this->add("' . $c->Field . '","checkbox",[';
             case (strpos($c->Type, 'int') !== false) || $c->Type == 'int':
                 return $schema->nlt(1) . '$this->add("' . $c->Field . '","number",[';
+            case (strpos($c->Type, 'date') !== false) || $c->Type == 'date' || $c->Type == 'datetime':
+                return $schema->nlt(1) . '$this->add("' . $c->Field . '","datetime",[';
             case $c->Field == 'email':
                 return $schema->nlt(1) . '$this->add("' . $c->Field . '","email",[';
             default:

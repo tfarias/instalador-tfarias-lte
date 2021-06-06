@@ -20,12 +20,12 @@ class Schema{
             case 'mysql':
                 $data =  DB::select("SELECT column_name,character_maximum_length as size
                             FROM   information_schema.columns  WHERE  table_schema = '" . env('DB_DATABASE') . "'
-                               AND table_name = '".$this->tabela."'
-                               AND column_name = '".$colum."' ");
+                               AND table_name = `{$this->tabela}`
+                               AND column_name = `{$colum}` ");
                 break;
             case 'pgsql':
                 $data = DB::select("select column_name as Field,column_default as Default,data_type as Type, character_maximum_length as size
-        from INFORMATION_SCHEMA.COLUMNS where table_name = '".$this->tabela."' AND column_name = '".$colum."'  ");
+        from INFORMATION_SCHEMA.COLUMNS where table_name = `{$this->tabela}` AND column_name = `{$colum}`   ");
                 break;
             default;
                 $data = [];
@@ -53,7 +53,7 @@ class Schema{
                             JOIN information_schema.constraint_column_usage AS ccu
                               ON ccu.constraint_name = tc.constraint_name
 
-                              where (tc.table_name = '".$this->tabela."' or ccu.table_name = '".$this->tabela."')
+                              where (tc.table_name = `{$this->tabela}` or ccu.table_name = `{$this->tabela}`)
 
                        ");
                 break;
@@ -76,7 +76,7 @@ class Schema{
                     referenced_table_name AS 'reftable', referenced_column_name  AS 'refpk'
                     FROM information_schema.key_column_usage
                     WHERE referenced_table_name IS NOT NULL
-                    AND TABLE_SCHEMA='" . env('DB_DATABASE') . "' AND table_name = '" . $this->tabela . "' AND column_name = '".$key."' limit 1;");
+                    AND TABLE_SCHEMA='" . env('DB_DATABASE') . "' AND table_name = `{$this->tabela}` AND column_name = `{$key}` limit 1;");
                   break;
               case 'pgsql':
                   $data = DB::select("SELECT tc.table_name as table, kcu.column_name as fk, ccu.table_name AS reftable, ccu.column_name AS refpk
@@ -86,7 +86,7 @@ class Schema{
                               ON tc.constraint_name = kcu.constraint_name
                             JOIN information_schema.constraint_column_usage AS ccu
                               ON ccu.constraint_name = tc.constraint_name
-                        WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name='".$this->tabela."' AND kcu.column_name = '".$key."' limit 1;");
+                        WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name=`{$this->tabela}` AND kcu.column_name = `{$key}` limit 1;");
                   break;
               default;
                   $data = [];
@@ -101,7 +101,7 @@ class Schema{
     public function getTableSchema() {
         switch (env('DB_CONNECTION')){
             case 'mysql':
-                return DB::select('SHOW FULL COLUMNS FROM '.$this->tabela);
+                return DB::select("SHOW FULL COLUMNS FROM `{$this->tabela}`");
             break;
             case 'pgsql':
                 return $this->describle_postgress();
@@ -118,7 +118,7 @@ class Schema{
                                     isc.data_type as Type,
                                     isc.character_maximum_length as size,
                                     pg_catalog.col_description(format('%s.%s',isc.table_schema,isc.table_name)::regclass::oid,isc.ordinal_position) as Comment
-                                    from INFORMATION_SCHEMA.COLUMNS isc where table_name = '".$this->tabela."'");
+                                    from INFORMATION_SCHEMA.COLUMNS isc where table_name = `{$this->tabela}`");
         $res = [];
         if(!empty($query)){
             foreach ($query as $q) {
@@ -154,11 +154,11 @@ class Schema{
                     FROM information_schema.key_column_usage AS c
                     LEFT JOIN information_schema.table_constraints AS t
                     ON t.constraint_name = c.constraint_name
-                    WHERE t.table_name = '".$this->tabela."' AND c.column_name = '".$coluna."' limit 1");
+                    WHERE t.table_name = `{$this->tabela}` AND c.column_name = `{$coluna}` limit 1");
     }
 
     function check_isnullable($coluna){
-        return DB::select(" SELECT column_name, is_nullable FROM information_schema.columns WHERE table_name = '".$this->tabela."' and column_name ='".$coluna."' limit 1");
+        return DB::select(" SELECT column_name, is_nullable FROM information_schema.columns WHERE table_name = `{$this->tabela}` and column_name = `{$coluna}` limit 1");
     }
     public function nlt($n) {
         $r = "\n";
@@ -186,7 +186,7 @@ class Schema{
                     referenced_table_name AS 'reftable', referenced_column_name  AS 'refpk'
                     FROM information_schema.key_column_usage
                     WHERE referenced_table_name IS NOT NULL
-                    AND TABLE_SCHEMA='" . env('DB_DATABASE') . "' AND table_name = '" . $this->tabela . "'");
+                    AND TABLE_SCHEMA='" . env('DB_DATABASE') . "' AND table_name = `{$this->tabela}`");
                 break;
             case 'pgsql':
                 $data = DB::select("SELECT tc.table_name as table, kcu.column_name as fk, ccu.table_name AS reftable, ccu.column_name AS refpk
@@ -196,7 +196,7 @@ class Schema{
                               ON tc.constraint_name = kcu.constraint_name
                             JOIN information_schema.constraint_column_usage AS ccu
                               ON ccu.constraint_name = tc.constraint_name
-                        WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name='".$this->tabela."';");
+                        WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name=`{$this->tabela}`;");
                 break;
                 default;
                 $data = [];
