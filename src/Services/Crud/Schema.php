@@ -179,6 +179,25 @@ class Schema{
         return $nome . "s";
     }
 
+    public function nameFunction($name){
+
+        if(strpos($name, '_') !== false){
+            $nome = collect(explode('_',$name));
+            $res = "";
+            if($nome->count()>0){
+                foreach ($nome as $key => $n){
+                    if($key == 0){
+                        $res.= strtolower($n);
+                    }else{
+                        $res.= ucwords(strtolower($n));
+                    }
+                }
+            }
+            return $res;
+        }
+        return strtolower($name);
+    }
+
     public function getTabelaAssociacao() {
         switch (env('DB_CONNECTION')) {
             case 'mysql':
