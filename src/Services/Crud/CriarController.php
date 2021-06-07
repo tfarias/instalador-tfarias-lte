@@ -43,7 +43,7 @@ class CriarController
 
         $this->atualizarRotas($tabela, $classe);
         $this->atualizarMenu($titulo, $tabela);
-        $this->atualizarJsonRotas($titulo, $tabela, $classe);
+        //$this->atualizarJsonRotas($titulo, $tabela, $classe);
     }
 
     /**
