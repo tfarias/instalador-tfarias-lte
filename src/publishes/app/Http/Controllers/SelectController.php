@@ -45,5 +45,23 @@ class SelectController extends Controller
         return response()->json($ret);
     }
 
+    /**
+     *  Filtra um registro para os campos select2.
+     *
+     * @param $id
+     */
+    public function getEdit($id)
+    {
+        $model = request()->get('model');
+        $model = ucfirst(Str::camel($model));
+        $campo = request()->get('campo');
+        $instancia = '\App\Models\\' . $model;
+        $result = $instancia::find($id);
+        $res = ['nome'=>'selecione','id'=>null];
+        if(!empty($result)){
+            $res = ['nome'=>$result->$campo,'id'=>$result->id];
+        }
+        return response()->json($res);
+    }
 
 }

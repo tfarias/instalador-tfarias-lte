@@ -154,7 +154,8 @@ class CriaModel
                 $funcoes.= $schema->nlt(1) .'* ' . ucfirst($tabela) . ' pertence a ' . ucfirst($v->reftable);
                 $funcoes.= $schema->nlt(1) . '* @return \Illuminate\Database\Eloquent\Relations\BelongsTo ';
                 $funcoes.=  $schema->nlt(1) . '*/';
-                $funcoes.=  $schema->nlt(1) . 'public function ' . $schema->nameFunction($mname) . '() {';
+                $funcoes.=  $schema->nlt(1) . 'public function ' . $schema->nameFunction($mname) . '()';
+                $funcoes.=  $schema->nlt(1) . '{';
                 $funcoes.=  $schema->nlt(2) . 'return $this->belongsTo(\\'.$this->getAppNamespace().'Models\\' . ucfirst(Str::camel($v->reftable)) . '::class,\'' . $v->fk . '\',\'' . $v->refpk . '\');';
                 $funcoes.=  $schema->nlt(1) . "}";
             }
@@ -169,7 +170,8 @@ class CriaModel
                 $funcoes.=$schema->nlt(1) . '* ' . ucfirst($tabela) . ' possui ' . $schema->getPlural(ucfirst($v->table));
                 $funcoes.=$schema->nlt(1) . '* @return \Illuminate\Database\Eloquent\Relations\HasMany';
                 $funcoes.=$schema->nlt(1) . '*/';
-                $funcoes.=$schema->nlt(1) . 'public function ' . $schema->nameFunction($mname) . '() {';
+                $funcoes.=$schema->nlt(1) . 'public function ' . $schema->nameFunction($mname) . '()';
+                $funcoes.=$schema->nlt(1) . '{';
                 $funcoes.=$schema->nlt(2) . 'return $this->hasMany(\\'.$this->getAppNamespace().'Models\\' . ucfirst(Str::camel($v->table)) . '::class,\'' . $v->fk . '\',\'' . $v->refpk . '\');';
                 $funcoes.=$schema->nlt(1) . "}";
             }

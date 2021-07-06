@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('fill','App\Http\Controllers\SelectController@fill');
+
 Route::post('fill','App\Http\Controllers\SelectController@fill');
 
 
