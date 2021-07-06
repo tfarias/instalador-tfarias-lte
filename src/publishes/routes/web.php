@@ -19,6 +19,4 @@ Route::get('/', function () {
 
 Route::post('fill','App\Http\Controllers\SelectController@fill');
 
-Route::post('fill','App\Http\Controllers\SelectController@fill');
-
 
