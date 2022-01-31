@@ -42,3 +42,7 @@ exemplo
 
       na migration acima a coluna descricao vai constar nos filtros
 ```
+
+## License
+
+Este instalador é um projeto open-sourced. [MIT license](https://opensource.org/licenses/MIT).
