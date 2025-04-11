@@ -5,7 +5,7 @@
         "kris/laravel-form-builder": "^1",
         "laracasts/flash": "^3",
         "laravel/framework": "~7.0|^8.0|^9|^10|^11|^12",
-        "patricktalmadge/bootstrapper": "^5.12",
+        "patricktalmadge/bootstrapper": "~5",
         "prettus/l5-repository": "^2"
     },
     "extra": {
